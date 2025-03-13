@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 # Create your views here.
+<<<<<<< HEAD
 def home(request):
     return HttpResponse("Book a Bite Home Page")
 
@@ -46,3 +47,6 @@ def addReview(request):
 
 def manageReview(request):
     return HttpResponse("Manage Review Page")
+=======
+
+>>>>>>> c1a6b7e9380ce0c3219c32edae34005b3e173c64
