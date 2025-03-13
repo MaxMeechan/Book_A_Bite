@@ -1,0 +1,14 @@
+{% extends 'BookaBite/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Booking
+{% endblock %}
+
+{% block body_block %}
+    This is the Bookings page
+    <ul>
+        <li><a href="{% url 'BookABite:addBooking' %}">Add Booking</a></li>
+        <li><a href="{% url 'BookABite:manageBooking' %}">Manage Booking</a></li>
+    </ul>
+{% endblock %}

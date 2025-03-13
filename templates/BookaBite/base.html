@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+    <head lang="en">
+        <meta charset="UTF-8"/>
+        <title>Book A Bite</title>
+    </head>
+    <body>
+        <div>
+            <ul>
+                <li><a href="{% url 'BookABite:home' %}">Home</a></li>
+                <li><a href="{% url 'BookABite:about' %}">About</a></li>
+                <li><a href="{% url 'BookABite:login' %}">Login</a></li>
+                <li><a href="{% url 'BookABite:signup' %}">Sign-Up</a></li>
+                <li><a href="{% url 'BookABite:menu' %}">Menu</a></li>
+                <li><a href="{% url 'BookABite:bookings' %}">My Bookings</a></li>
+                <li><a href="{% url 'BookABite:review' %}">Reviews</a></li>
+            </ul>
+        </div>
+        <div>
+        {% block body_block %}
+        {% endblock %}
+        </div>
+    </body>
+</html>

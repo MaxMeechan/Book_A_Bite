@@ -1,0 +1,16 @@
+{% extends 'BookaBite/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Choose Menu
+{% endblock %}
+
+{% block body_block %}
+    This is the Choose Menu page
+    </br>
+    <ul>
+        <li><a href="{% url 'BookABite:showMenu' %}">Click to view menu options</a></li>
+        <li><a href="{% url 'BookABite:addMenu' %}">Click to add menu</a></li>
+        <li><a href="{% url 'BookABite:menu' %}">Return to menu</a></li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'BookaBite/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Review
+{% endblock %}
+
+{% block body_block %}
+    This is the reviews page
+    <ul>
+        <li><a href="{% url 'BookABite:addReview' %}">Add Review</a></li>
+        <li><a href="{% url 'BookABite:manageReview' %}">Manage Review</a></li>
+    </ul>
+{% endblock %}

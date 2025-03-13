@@ -1,0 +1,16 @@
+{% extends 'BookaBite/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Show Menu
+{% endblock %}
+
+{% block body_block %}
+    This is the Show Menu page
+    </br>
+    <ul>
+        <li><a href="{% url 'BookABite:addItem' %}">Add Item</a></li>
+        <li><a href="{% url 'BookABite:chooseMenu' %}">Return to menus</a></li>
+    </ul>
+    
+{% endblock %}

@@ -3,46 +3,46 @@ from django.http import HttpResponse
 
 # Create your views here.
 def home(request):
-    return HttpResponse("Book a Bite Home Page")
+    return render(request, 'BookaBite/home.html')
 
 def about(request):
-    return HttpResponse("This is the About Page")
+    return render(request, 'BookaBite/about.html')
 
 def login(request):
-    return HttpResponse("Login Page")
+    return render(request, 'BookaBite/login.html')
 
 def signup(request):
-    return HttpResponse("Sign Up Page")
+    return render(request, 'BookaBite/signup.html')
 
 def bookings(request):
-    return HttpResponse("Booking Page")
+    return render(request, 'BookaBite/bookings.html')
 
 def manageBooking(request):
-    return HttpResponse("Manage Booking Page")
+    return render(request, 'BookaBite/manageBookings.html')
 
 def addBooking(request):
-    return HttpResponse("Add Booking Page")
+    return render(request, 'BookaBite/addBookings.html')
 
 def menu(request):
-    return HttpResponse("Menu Page")
+    return render(request, 'BookaBite/menu.html')
 
 def chooseMenu(request):
-    return HttpResponse("Choose Menu Page")
+    return render(request, 'BookaBite/chooseMenu.html')
 
 def showMenu(request):
-    return HttpResponse("Show Menus Page")
+    return render(request, 'BookaBite/showMenu.html')
 
 def addMenu(request):
-    return HttpResponse("Add Menu Page")
+    return render(request, 'BookaBite/addMenu.html')
 
 def addItem(request):
-    return HttpResponse("Add Item Page")
+    return render(request, 'BookaBite/addItem.html')
 
 def review(request):
-    return HttpResponse("Review Page")
+    return render(request, 'BookaBite/review.html')
 
 def addReview(request):
-    return HttpResponse("Add Review Page")
+    return render(request, 'BookaBite/addReview.html')
 
 def manageReview(request):
-    return HttpResponse("Manage Review Page")
+    return render(request, 'BookaBite/manageReview.html')
