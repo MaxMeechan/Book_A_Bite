@@ -67,6 +67,14 @@ h1 {
     transform: scale(1.1);
 }
 
+.nav-logo {
+    width: 10px;
+    height: auto;
+    margin-right: 20px;
+    border-radius: 50%;
+    flex-grow: 1;
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
     .image-gallery {
