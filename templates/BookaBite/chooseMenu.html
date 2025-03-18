@@ -2,15 +2,31 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    Choose Menu
+  Choose Menu
 {% endblock %}
 
 {% block body_block %}
-    This is the Choose Menu page
-    </br>
-    <ul>
-        <li><a href="{% url 'BookABite:showMenu' %}">Click to view menu options</a></li>
-        <li><a href="{% url 'BookABite:addMenu' %}">Click to add menu</a></li>
-        <li><a href="{% url 'BookABite:menu' %}">Return to menu</a></li>
-    </ul>
+<section class="container mx-auto px-4 py-6">
+  <h1 class="text-3xl font-bold text-center mb-6">Choose Menu</h1>
+  <p class="text-gray-700 text-center mb-8">This is the Choose Menu page.</p>
+
+  <!-- Button List -->
+  <ul class="flex flex-col items-center space-y-4">
+    <li>
+      <a href="{% url 'BookABite:showMenu' %}" class="inline-block px-6 py-2 border-2 border-blue-500 text-blue-500 font-semibold text-sm leading-tight uppercase rounded hover:bg-blue-500 hover:text-white transition duration-150 ease-in-out">
+        Click to view menu options
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'BookABite:addMenu' %}" class="inline-block px-6 py-2 border-2 border-blue-500 text-blue-500 font-semibold text-sm leading-tight uppercase rounded hover:bg-blue-500 hover:text-white transition duration-150 ease-in-out">
+        Click to add menu
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'BookABite:menu' %}" class="inline-block px-6 py-2 border-2 border-blue-500 text-blue-500 font-semibold text-sm leading-tight uppercase rounded hover:bg-blue-500 hover:text-white transition duration-150 ease-in-out">
+        Return to menu
+      </a>
+    </li>
+  </ul>
+</section>
 {% endblock %}

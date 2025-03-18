@@ -2,11 +2,19 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    Add Menu
+Add Menu
 {% endblock %}
 
 {% block body_block %}
-    This is the Add Menu page
-    </br>
-    <a href="{% url 'BookABite:chooseMenu' %}">Return to menus</a>
+<section class="container mx-auto px-4 py-6">
+    <h1 class="text-3xl font-bold text-center mb-6">Add Menu</h1>
+    <p class="text-gray-700 text-center mb-8">This is the Add Menu page.</p>
+
+    <div class="text-center">
+        <a href="{% url 'BookABite:chooseMenu' %}"
+            class="inline-block px-6 py-2 border-2 border-green-500 text-green-500 font-semibold text-sm leading-tight uppercase rounded hover:bg-green-500 hover:text-white transition duration-150 ease-in-out">
+            Return to menus
+        </a>
+    </div>
+</section>
 {% endblock %}

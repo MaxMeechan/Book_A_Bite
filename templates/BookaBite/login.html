@@ -2,13 +2,14 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    Login
+  Login
 {% endblock %}
 
 {% block body_block %}
-    This is the login page
-
-    <div>
-        <img style = "width: 300px;" src="/media/Login_Image.png">
-    </div>
+<section class="container mx-auto px-4 py-6 flex flex-col items-center">
+  <h1 class="text-3xl font-bold text-center mb-6">This is the login page</h1>
+  <div>
+    <img class="w-[300px] rounded shadow" src="/media/Login_Image.png" alt="Login Image">
+  </div>
+</section>
 {% endblock %}

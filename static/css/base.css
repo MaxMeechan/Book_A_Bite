@@ -1,0 +1,82 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+}
+
+/* Navigation Bar */
+ul {
+    list-style-type: none;
+    padding: 0;
+    background-color: #333;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+ul li {
+    display: inline;
+}
+
+ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+ul li a:hover {
+    background-color: #ff4500;
+}
+
+/* About Page Content */
+.container {
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #333;
+}
+
+/* Image Styling */
+.image-gallery {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.image-gallery img {
+    width: 200px;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.image-gallery img:hover {
+    transform: scale(1.1);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .image-gallery {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .image-gallery img {
+        width: 80%;
+    }
+}
+
+

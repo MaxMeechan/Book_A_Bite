@@ -2,15 +2,25 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    Show Menu
+  Show Menu
 {% endblock %}
 
 {% block body_block %}
-    This is the Show Menu page
-    </br>
-    <ul>
-        <li><a href="{% url 'BookABite:addItem' %}">Add Item</a></li>
-        <li><a href="{% url 'BookABite:chooseMenu' %}">Return to menus</a></li>
-    </ul>
-    
+<section class="container mx-auto px-4 py-6">
+  <h1 class="text-3xl font-bold text-center mb-6">Show Menu</h1>
+  <p class="text-gray-700 text-center mb-8">This is the Show Menu page.</p>
+
+  <ul class="flex flex-col items-center space-y-4">
+    <li>
+      <a href="{% url 'BookABite:addItem' %}" class="inline-block px-6 py-2 border-2 border-blue-500 text-blue-500 font-semibold text-sm leading-tight uppercase rounded hover:bg-blue-500 hover:text-white transition duration-150 ease-in-out">
+        Add Item
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'BookABite:chooseMenu' %}" class="inline-block px-6 py-2 border-2 border-green-500 text-green-500 font-semibold text-sm leading-tight uppercase rounded hover:bg-green-500 hover:text-white transition duration-150 ease-in-out">
+        Return to Menus
+      </a>
+    </li>
+  </ul>
+</section>
 {% endblock %}

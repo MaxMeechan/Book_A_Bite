@@ -2,36 +2,39 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    Menu
+  Menu
 {% endblock %}
 
 {% block body_block %}
-    This is the menu page
+<section class="container mx-auto px-4 py-6">
+  <h1 class="text-3xl font-bold text-center mb-6">This is the menu page</h1>
 
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
     <div>
-        <img style = "width: 200px;" src="/media/Burger.jpg">
+      <img class="w-[200px] mx-auto rounded shadow" src="/media/Burger.jpg" alt="Burger">
     </div>
-
     <div>
-        <img style = "width: 200px;" src="/media/Pizza.jpg">
+      <img class="w-[200px] mx-auto rounded shadow" src="/media/Pizza.jpg" alt="Pizza">
     </div>
-
     <div>
-        <img style = "width: 200px;" src="/media/Steak1.jpeg">
+      <img class="w-[200px] mx-auto rounded shadow" src="/media/Steak1.jpeg" alt="Steak">
     </div>
-
     <div>
-        <img style = "width: 200px;" src="/media/Sushi.jpg">
+      <img class="w-[200px] mx-auto rounded shadow" src="/media/Sushi.jpg" alt="Sushi">
     </div>
-
     <div>
-        <img style = "width: 200px;" src="/media/Tacos.jpeg">
+      <img class="w-[200px] mx-auto rounded shadow" src="/media/Tacos.jpeg" alt="Tacos">
     </div>
-
     <div>
-        <img style = "width: 200px;" src="/media/Kids_Meal.jpg">
+      <img class="w-[200px] mx-auto rounded shadow" src="/media/Kids_Meal.jpg" alt="Kids Meal">
     </div>
+  </div>
 
-    </br>
-    <a href="{% url 'BookABite:chooseMenu' %}">Choose Menu</a>
+  <div class="mt-8 text-center">
+    <a href="{% url 'BookABite:chooseMenu' %}" class="inline-block px-6 py-2 border-2 border-blue-500 text-blue-500 font-semibold text-sm leading-tight uppercase rounded hover:bg-blue-500 hover:text-white transition duration-150 ease-in-out">
+      Choose Menu
+    </a>
+  </div>
+</section>
 {% endblock %}
+

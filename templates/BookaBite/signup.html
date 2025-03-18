@@ -2,13 +2,14 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    Sign Up
+  Sign Up
 {% endblock %}
 
 {% block body_block %}
-    This is the sign-up page
-
-    <div>
-        <img style = "width: 400px;" src="/media/Sign_Up_Image.png">
-    </div>
+<section class="container mx-auto px-4 py-6 flex flex-col items-center">
+  <h1 class="text-3xl font-bold text-center mb-6">This is the sign-up page</h1>
+  <div>
+    <img class="w-[400px] rounded shadow" src="/media/Sign_Up_Image.png" alt="Sign Up Image">
+  </div>
+</section>
 {% endblock %}

@@ -1,26 +1,54 @@
 <!DOCTYPE html>
 {% load staticfiles %}
+<html lang="en">
 
-<html>
-    <head lang="en">
-        <meta charset="UTF-8"/>
-        <title>Book A Bite</title>
-    </head>
-    <body>
-        <div>
-            <ul>
-                <li><a href="{% url 'BookABite:home' %}">Home</a></li>
-                <li><a href="{% url 'BookABite:about' %}">About</a></li>
-                <li><a href="{% url 'BookABite:login' %}">Login</a></li>
-                <li><a href="{% url 'BookABite:signup' %}">Sign-Up</a></li>
-                <li><a href="{% url 'BookABite:menu' %}">Menu</a></li>
-                <li><a href="{% url 'BookABite:bookings' %}">My Bookings</a></li>
-                <li><a href="{% url 'BookABite:review' %}">Reviews</a></li>
-            </ul>
+<head>
+    <meta charset="UTF-8" />
+    <title>Book A Bite</title>
+    {% load static %}
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50">
+
+    <header class="bg-white shadow">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-gray-800">Book A Bite</div>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li>
+                        <a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:home' %}">Home</a>
+                    </li>
+                    <li>
+                        <a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:about' %}">About</a>
+                    </li>
+                    <li>
+                        <a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:login' %}">Login</a>
+                    </li>
+                    <li>
+                        <a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:signup' %}">Sign-Up</a>
+                    </li>
+                    <li>
+                        <a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:menu' %}">Menu</a>
+                    </li>
+                    <li>
+                        <a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:bookings' %}">My
+                            Bookings</a>
+                    </li>
+                    <li>
+                        <a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:review' %}">Reviews</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
-        <div>
+    </header>
+
+
+    <main class="container mx-auto px-4 py-6">
         {% block body_block %}
         {% endblock %}
-        </div>
-    </body>
+    </main>
+</body>
+
 </html>

@@ -2,13 +2,22 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    Booking
+Booking
 {% endblock %}
 
 {% block body_block %}
-    This is the Bookings page
-    <ul>
-        <li><a href="{% url 'BookABite:addBooking' %}">Add Booking</a></li>
-        <li><a href="{% url 'BookABite:manageBooking' %}">Manage Booking</a></li>
-    </ul>
+<section class="container mx-auto px-4 py-6 flex flex-col items-center">
+    <h1 class="text-3xl font-bold text-center mb-6">This is the Bookings page</h1>
+    <div class="flex flex-col space-y-4">
+        <a href="{% url 'BookABite:addBooking' %}"
+            class="inline-block px-6 py-2 border-2 border-blue-500 text-blue-500 font-semibold text-sm leading-tight uppercase rounded hover:bg-blue-500 hover:text-white transition duration-150 ease-in-out">
+            Add Booking
+        </a>
+        <a href="{% url 'BookABite:manageBooking' %}"
+            class="inline-block px-6 py-2 border-2 border-blue-500 text-blue-500 font-semibold text-sm leading-tight uppercase rounded hover:bg-blue-500 hover:text-white transition duration-150 ease-in-out">
+            Manage Booking
+        </a>
+    </div>
+</section>
 {% endblock %}
+
