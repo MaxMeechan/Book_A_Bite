@@ -1,13 +1,18 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
-class User(models.Model):
+class UserProfile(models.Model):
+    user= models.OneToOneField(User, on_delete=models.CASCADE)
     Username= models.CharField(max_length=16,unique=True)
     firstName= models.CharField(max_length=16)
     surname = models.CharField(max_length=16)
     email = models.EmailField(unique=True) 
     Password = models.CharField(max_length=16)
     profilePicture= models.ImageField(upload_to='profile_images', blank=True)
+    
+    def __str__(self):
+      return self.user.username
     
 
 
@@ -17,7 +22,7 @@ class Bookings(models.Model):
     bookingTime= models.TimeField()
     partyMembers= models.IntegerField()
     surname= models.CharField(max_length=16)
-    email = models.ForeignKey(User, to_field="email", on_delete=models.CASCADE, related_name="bookings_by_email")
+    email = models.ForeignKey(UserProfile, to_field="email", on_delete=models.CASCADE, related_name="bookings_by_email")
     
     class Meta:
        verbose_name_plural = 'Bookings'
@@ -30,7 +35,7 @@ class Reviews(models.Model):
     Title= models.CharField(max_length=30)
     RatingNum=models.IntegerField()
     ReviewText= models.CharField(max_length=1000)
-    Username= models.ForeignKey(User, to_field="Username", on_delete=models.CASCADE, related_name="reviews_by_Username")
+    Username= models.ForeignKey(UserProfile, to_field="Username", on_delete=models.CASCADE, related_name="reviews_by_Username")
     
     class Meta:
         verbose_name_plural = 'Reviews'
