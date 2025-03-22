@@ -6,21 +6,29 @@
 {% endblock %}
 
 {% block body_block %}
-<section class="container mx-auto px-4 py-6 flex flex-col items-center">
-  <h1 class="text-3xl font-bold text-center mb-6">This is the sign-up page</h1>
-{% if registered %}
-<strong>You are already registered</strong>
-{% else %}
-<form id="user_form" method="post" action="{% url 'BookABite:signup' %}" enctype="multipart/form-data">
-  {% csrf_token %}
-  {{ user_form.as_p }}
-  {{ profile_form.as_p }}
-  <input type="submit" name="submit"value="Register" />
-</form>
-{% endif %}
+<section class="container mx-auto px-4 py-10 flex flex-col items-center">
+  <h1 class="text-4xl font-bold text-center mb-6">Sign Up</h1>
 
-  <div>
-    <img class="w-[400px] rounded shadow" src="/media/Sign_Up_Image.png" alt="Sign Up Image">
-  </div>
+  {% if registered %}
+    <strong class="text-green-600 text-lg">You are already registered!</strong>
+  {% else %}
+    <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-lg">
+      <form id="user_form" method="post" action="{% url 'BookABite:signup' %}" enctype="multipart/form-data" class="space-y-4">
+        {% csrf_token %}
+
+        <div class="space-y-2">
+          {{ user_form.as_p }}
+          {{ profile_form.as_p }}
+        </div>
+
+        <button type="submit" class="w-full bg-blue-600 text-white font-bold py-2 rounded-lg hover:bg-blue-700 transition">
+          Register
+        </button>
+      </form>
+    </div>
+  {% endif %}
+
+  <img class="w-64 mt-6 rounded-lg shadow" src="/media/Sign_Up_Image.png" alt="Sign Up Image">
 </section>
 {% endblock %}
+

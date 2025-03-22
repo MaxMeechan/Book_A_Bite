@@ -6,21 +6,24 @@
 {% endblock %}
 
 {% block body_block %}
-<section class="container mx-auto px-4 py-6">
-  <h2 class="text-3xl font-bold text-center mb-4">About Us</h2>
+<section class="relative container mx-auto px-4 py-6 h-screen flex flex-col justify-center items-center">
+  <h2 class="text-3xl font-bold text-center mb-4 mt-[-300px]">About Us</h2>
   <p class="text-gray-700 text-center mb-8">
     Learn more about how Book A Bite came around.
   </p>
-  <div class="flex flex-col items-center space-y-4 md:flex-row md:justify-center md:space-y-0 md:space-x-8">
-    <div class="md:w-1/2 text-left">
-      <p class="test-gray-700">
-        The Fusion Feast: Book A Bite website was created by 5 members of Group 7E: Ryan O'Byrne, Max Meechan, Kyle Smith, Keyaan Sadiq and Bowen Sun. Our goal was to make an amazing website for every user to have an easy experience to book the restaurant for food, browse the variety of the restaurant's menu and leave reviews on how they enjoyed their restaurant experience whilst all making this user-friendly and efficiently interactive.
-      </p>
-    </div>
-    <div>
-      <img class="w-[200px] rounded shadow" src="/media/chef_kitchen.jpeg" alt="Chef Kitchen">
-      <img class="w-[200px] rounded shadow" src="/media/Restaruant.jpeg" alt="Restaurant">
-      <img class="w-[200px] rounded shadow" src="/media/Restaruant_Outside.jpeg" alt="Restaurant Outside">
-    </div>
+
+  <div class="w-3/5 text-center">
+    <p class="text-gray-700 text-lg">
+      The Fusion Feast: Book A Bite website was created by 5 members of Group 7E: Ryan O'Byrne, Max Meechan, Kyle Smith, Keyaan Sadiq, and Bowen Sun. Our goal was to create an amazing website for every user to have an easy experience booking the restaurant for food, browsing the variety of the restaurant's menu, and leaving reviews on how they enjoyed their restaurant experience, all while making this user-friendly and efficiently interactive.
+    </p>
+  </div>
+
+  <img class="absolute top-6 left-6 w-[200px] rounded shadow" src="/media/chef_kitchen.jpeg" alt="Chef Kitchen">
+  <img class="absolute top-6 right-6 w-[200px] rounded shadow" src="/media/Restaruant.jpeg" alt="Restaurant">
+  <img class="absolute bottom-15 right-6 w-[200px] rounded shadow" src="/media/Restaruant_Outside.jpeg" alt="Restaurant Outside">
+
 </section>
 {% endblock %}
+
+
+
