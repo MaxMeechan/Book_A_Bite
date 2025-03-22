@@ -41,7 +41,7 @@ class Reviews(models.Model):
         verbose_name_plural = 'Reviews'
     
     def __str__(self):
-      return f"{self.Title} {self.Username}"
+      return f"{self.Title} - {self.Username}"
 
 class Menu(models.Model):
     MenuID= models.AutoField(primary_key=True)
