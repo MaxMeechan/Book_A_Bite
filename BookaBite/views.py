@@ -1,8 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout
 from datetime import datetime
 from BookaBite.forms import UserForm,UserProfileForm
 from django.urls import reverse
@@ -14,6 +13,14 @@ def home(request):
 
 def about(request):
     return render(request, 'BookaBite/about.html')
+
+@login_required
+def user_logout(request):
+    
+    logout(request)
+    #request.session.flush()
+    return redirect(reverse('BookABite:home'))
+    
 
 def user_login(request):
     
