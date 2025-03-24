@@ -18,12 +18,26 @@
     </p>
   </div>
 
-  <img class="absolute top-6 left-6 w-[200px] rounded shadow" src="/media/chef_kitchen.jpeg" alt="Chef Kitchen">
-  <img class="absolute top-6 right-6 w-[200px] rounded shadow" src="/media/Restaruant.jpeg" alt="Restaurant">
-  <img class="absolute bottom-15 right-6 w-[200px] rounded shadow" src="/media/Restaruant_Outside.jpeg" alt="Restaurant Outside">
+
+  <img class="about-image absolute top-6 left-6 w-[200px] rounded shadow transition-transform duration-300" src="/media/chef_kitchen.jpeg" alt="Chef Kitchen">
+  <img class="about-image absolute top-6 right-6 w-[200px] rounded shadow transition-transform duration-300" src="/media/Restaruant.jpeg" alt="Restaurant">
+  <img class="about-image absolute bottom-15 right-6 w-[200px] rounded shadow transition-transform duration-300" src="/media/Restaruant_Outside.jpeg" alt="Restaurant Outside">
 
 </section>
+
+<script>
+  document.querySelectorAll('.about-image').forEach(img => {
+    img.addEventListener('mouseenter', () => {
+      img.style.transform = 'scale(1.1)';
+    });
+
+    img.addEventListener('mouseleave', () => {
+      img.style.transform = 'scale(1)';
+    });
+  });
+</script>
 {% endblock %}
+
 
 
 
