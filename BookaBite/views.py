@@ -3,9 +3,12 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
-from BookaBite.forms import UserForm,UserProfileForm
+from BookaBite.forms import UserForm,UserProfileForm,ReviewsForm
 from django.urls import reverse
 from django.shortcuts import redirect
+from BookaBite.models import Reviews, Bookings, UserProfile
+from django.shortcuts import get_object_or_404
+
 
 # Create your views here.
 def home(request):
@@ -53,8 +56,8 @@ def signup(request):
             user =user_form.save()
             user.set_password(user.password)
             user.save()
-            profile =profile_form.save(commit=False)
-            profile.user =user
+            profile = profile_form.save(commit=False)
+            profile.user = user
             
             if 'picture' in request.FILES:
                 profile.picture =request.FILES['picture']
@@ -96,10 +99,68 @@ def addItem(request):
     return render(request, 'BookaBite/addItem.html')
 
 def review(request):
-    return render(request, 'BookaBite/review.html')
-
+    
+    Review_list= Reviews.objects.order_by('RatingNum')
+    context_dict = {}
+    context_dict['review_list']= Review_list
+    
+    return render(request, 'BookaBite/review.html',context_dict)
+@login_required
 def addReview(request):
-    return render(request, 'BookaBite/addReview.html')
+    if request.method == "POST":
+        form = ReviewsForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            user= request.user
+            user_profile, created = UserProfile.objects.get_or_create(
+                user=user,
+                defaults={
+                    'Username': user.username, 
+                    'firstName': user.first_name, 
+                    'surname': user.last_name, 
+                    'email': user.email
+                }
+            )
 
+            review.Username = user_profile
+            review.save()  
+            return redirect('BookABite:review')
+    else:
+        form = ReviewsForm()
+    return render(request, 'BookaBite/addReview.html', {'form': form})
+@login_required
 def manageReview(request):
-    return render(request, 'BookaBite/manageReview.html')
+    user = request.user
+    
+    user_profile, created = UserProfile.objects.get_or_create(
+            user=user,
+            defaults={
+                'Username': user.username, 
+                'firstName': user.first_name, 
+                'surname': user.last_name, 
+                'email': user.email
+                }
+            )
+    user_reviews = Reviews.objects.filter(Username=user_profile)
+    
+    
+    return render(request, 'BookaBite/manageReview.html',{'user_reviews': user_reviews})
+
+@login_required
+def deleteReview(request,review_id):
+    review = get_object_or_404(Reviews, ReviewID=review_id, Username=request.user.userprofile)
+    if request.method == "POST":
+        review.delete()
+        return redirect('BookABite:manageReview')
+    return render(request, 'BookaBite/deleteReview.html', {'review': review})
+@login_required
+def editReview(request, review_id):
+    review = get_object_or_404(Reviews, ReviewID=review_id, Username=request.user.userprofile)
+    if request.method == "POST":
+        form = ReviewsForm(request.POST, instance=review)
+        if form.is_valid():
+            form.save()
+            return redirect('BookABite:manageReview')
+    else:
+        form = ReviewsForm(instance=review) 
+    return render(request, 'BookaBite/editReview.html', {'form': form, 'review': review})

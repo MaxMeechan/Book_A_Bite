@@ -12,6 +12,11 @@
 
   <div class="flex justify-center mb-8">
     <img class="w-48 rounded shadow" src="/media/Add_Reviews_Image.png" alt="Add Reviews">
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}  
+      <button type="submit">Submit Review</button>
+  </form>
   </div>
 
   <div class="text-center">

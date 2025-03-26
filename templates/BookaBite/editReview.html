@@ -1,0 +1,15 @@
+{% extends 'BookaBite/base.html' %}
+
+{% block title_block %}
+  Edit Review
+{% endblock %}
+
+{% block body_block %}
+  <h1>Edit Review</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save Changes</button>
+  </form>
+  <a href="{% url 'BookABite:manageReview' %}">Cancel</a>
+{% endblock %}
