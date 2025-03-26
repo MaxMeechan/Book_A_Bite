@@ -19,38 +19,51 @@
 
             <nav>
                 <ul class="flex space-x-4">
-                    <li>
-                        <a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:home' %}">Home</a>
-                    </li>
-                    <li>
-                        <a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:about' %}">About</a>
-                    </li>
-                    <li>
-                        <a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:login' %}">Login</a>
-                    </li>
-                    <li>
-                        <a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:signup' %}">Sign-Up</a>
-                    </li>
-                    <li>
-                        <a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:menu' %}">Menu</a>
-                    </li>
-                    <li>
-                        <a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:bookings' %}">My
-                            Bookings</a>
-                    </li>
-                    <li>
-                        <a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:review' %}">Reviews</a>
-                    </li>
+                    <li><a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:home' %}">Home</a></li>
+                    <li><a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:about' %}">About</a></li>
+                    <li><a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:login' %}">Login</a></li>
+                    <li><a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:signup' %}">Sign-Up</a></li>
+                    <li><a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:menu' %}">Menu</a></li>
+                    <li><a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:bookings' %}">My Bookings</a></li>
+                    <li><a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:review' %}">Reviews</a></li>
                 </ul>
             </nav>
         </div>
     </header>
+
     <main class="container mx-auto px-4 py-6">
         {% block body_block %}
         {% endblock %}
     </main>
+
     <footer class="bg-white-600 text-black text-center py-4 text-sm">
         <p>Book A Bite &copy; 2025</p>
     </footer>
+
+    <!-- JavaScript for cool image and button hover thing -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Image Hover Effect
+            document.querySelectorAll("img").forEach(img => {
+                img.style.transition = "transform 0.3s ease-in-out";
+                img.addEventListener("mouseenter", () => img.style.transform = "scale(1.1)");
+                img.addEventListener("mouseleave", () => img.style.transform = "scale(1)");
+            });
+
+            // Button Hover Effect
+            document.querySelectorAll("a, button, .btn").forEach(button => {
+                button.style.transition = "all 0.3s ease-in-out";
+                button.addEventListener("mouseenter", () => {
+                    button.style.backgroundColor = "#3b82f6"; 
+                    button.style.color = "white";
+                });
+                button.addEventListener("mouseleave", () => {
+                    button.style.backgroundColor = "transparent";
+                    button.style.color = "#3b82f6"; 
+                });
+            });
+        });
+    </script>
+
 </body>
 </html>
