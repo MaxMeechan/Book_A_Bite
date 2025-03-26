@@ -22,10 +22,13 @@
                     <li><a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:home' %}">Home</a></li>
                     <li><a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:about' %}">About</a></li>
                     <li><a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:login' %}">Login</a></li>
-                    <li><a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:signup' %}">Sign-Up</a></li>
+                    <li><a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:signup' %}">Sign-Up</a>
+                    </li>
                     <li><a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:menu' %}">Menu</a></li>
-                    <li><a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:bookings' %}">My Bookings</a></li>
-                    <li><a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:review' %}">Reviews</a></li>
+                    <li><a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:bookings' %}">My
+                            Bookings</a></li>
+                    <li><a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:review' %}">Reviews</a>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -43,27 +46,39 @@
     <!-- JavaScript for cool image and button hover thing -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            // Image Hover Effect
+
             document.querySelectorAll("img").forEach(img => {
                 img.style.transition = "transform 0.3s ease-in-out";
                 img.addEventListener("mouseenter", () => img.style.transform = "scale(1.1)");
                 img.addEventListener("mouseleave", () => img.style.transform = "scale(1)");
             });
 
-            // Button Hover Effect
+
             document.querySelectorAll("a, button, .btn").forEach(button => {
                 button.style.transition = "all 0.3s ease-in-out";
+
                 button.addEventListener("mouseenter", () => {
-                    button.style.backgroundColor = "#3b82f6"; 
-                    button.style.color = "white";
+                    if (button.classList.contains("border-green-500")) {
+                        button.style.backgroundColor = "#22c55e";
+                        button.style.color = "white";
+                    } else {
+                        button.style.backgroundColor = "#3b82f6";
+                        button.style.color = "white";
+                    }
                 });
+
                 button.addEventListener("mouseleave", () => {
                     button.style.backgroundColor = "transparent";
-                    button.style.color = "#3b82f6"; 
+                    if (button.classList.contains("border-green-500")) {
+                        button.style.color = "#22c55e";
+                    } else {
+                        button.style.color = "#3b82f6";
+                    }
                 });
             });
         });
     </script>
 
 </body>
+
 </html>
