@@ -6,7 +6,7 @@ from datetime import datetime
 from BookaBite.forms import UserForm,UserProfileForm,ReviewsForm,BookingsForm
 from django.urls import reverse
 from django.shortcuts import redirect
-from BookaBite.models import Reviews, Bookings, UserProfile
+from BookaBite.models import Reviews, Bookings, UserProfile, Menu, Item
 from django.shortcuts import get_object_or_404
 from django.utils.timezone import now
 from datetime import date
@@ -183,8 +183,24 @@ def menu(request):
 def chooseMenu(request):
     return render(request, 'BookaBite/chooseMenu.html')
 
-def showMenu(request):
-    return render(request, 'BookaBite/showMenu.html')
+def showMenu(request, menu):
+    
+    context_dict = {}
+    
+    try:
+        menu_obj = Menu.objects.get(MenuName = menu)
+        
+        items = Item.objects.filter(MenuName = menu_obj)
+        
+        context_dict['items'] = items
+        
+        context_dict['menu'] = menu_obj
+    except Menu.DoesNotExist:
+        
+        context_dict['items'] = None
+        context_dict['menu'] = None
+        
+    return render(request, 'BookaBite/showMenu.html', context=context_dict)
 
 def addMenu(request):
     return render(request, 'BookaBite/addMenu.html')
