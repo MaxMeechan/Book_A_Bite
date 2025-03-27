@@ -6,14 +6,26 @@
 {% endblock %}
 
 {% block body_block %}
-  <h1>Are you sure you want to delete this review?</h1>
-  <p><strong>Title:</strong> {{ review.Title }}</p>
-  <p><strong>Review:</strong> {{ review.ReviewText }}</p>
+<section class="container mx-auto px-4 py-10">
+  <h1 class="text-3xl font-bold text-center mb-6">Are you sure you want to delete this review?</h1>
+  <p class="text-gray-700 text-center mb-6"><strong>Title:</strong> {{ review.Title }}</p>
+  <p class="text-gray-700 text-center mb-8"><strong>Review:</strong> {{ review.ReviewText }}</p>
 
-  <form method="post">
-    {% csrf_token %}
-    <button type="submit">Yes, Delete</button>
-  </form>
-  
-  <a href="{% url 'BookABite:manageReview' %}">Cancel</a>
+  <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md mx-auto">
+    <form method="post">
+      {% csrf_token %}
+      <div class="flex justify-between">
+        <button type="submit" 
+          class="inline-block px-6 py-2 border-2 border-red-500 text-red-500 font-semibold text-sm leading-tight uppercase rounded hover:bg-red-500 hover:text-white transition duration-150 ease-in-out">
+          Yes, Delete
+        </button>
+        
+        <a href="{% url 'BookABite:manageReview' %}" 
+          class="inline-block px-6 py-2 border-2 border-blue-500 text-blue-500 font-semibold text-sm leading-tight uppercase rounded hover:bg-blue-500 hover:text-white transition duration-150 ease-in-out">
+          Cancel
+        </a>
+      </div>
+    </form>
+  </div>
+</section>
 {% endblock %}

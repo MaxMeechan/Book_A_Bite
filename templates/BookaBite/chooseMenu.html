@@ -6,9 +6,9 @@
 {% endblock %}
 
 {% block body_block %}
-<section class="container mx-auto px-4 py-6">
-  <h1 class="text-3xl font-bold text-center mb-6">Choose Menu</h1>
-  <p class="text-gray-700 text-center mb-8">This is the Choose Menu page.</p>
+<section class="container mx-auto px-4 py-10">
+  <h1 class="text-3xl font-bold text-center mb-6">Choose Your Menu</h1>
+  <p class="text-gray-700 text-center mb-8">Select from the following menus to explore more options.</p>
 
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
     {% for menu in menus %}
@@ -22,17 +22,19 @@
     {% endfor %}
   </div>
 
-  <ul class="flex flex-col items-center space-y-4">
-    <li>
-      <a href="{% url 'BookABite:addMenu' %}" class="inline-block px-6 py-2 border-2 border-blue-500 text-blue-500 font-semibold text-sm leading-tight uppercase rounded hover:bg-blue-500 hover:text-white transition duration-150 ease-in-out">
-        Click to add menu
-      </a>
-    </li>
-    <li>
-      <a href="{% url 'BookABite:menu' %}" class="inline-block px-6 py-2 border-2 border-green-500 text-green-500 font-semibold text-sm leading-tight uppercase rounded hover:bg-green-500 hover:text-white transition duration-150 ease-in-out">
-        Return to menu
-      </a>
-    </li>
-  </ul>
+  <div class="text-center">
+    <ul class="space-y-4">
+      <li>
+        <a href="{% url 'BookABite:addMenu' %}" class="inline-block px-6 py-2 border-2 border-blue-500 text-blue-500 font-semibold text-sm leading-tight uppercase rounded hover:bg-blue-500 hover:text-white transition duration-150 ease-in-out">
+          Add a New Menu
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'BookABite:menu' %}" class="inline-block px-6 py-2 border-2 border-green-500 text-green-500 font-semibold text-sm leading-tight uppercase rounded hover:bg-green-500 hover:text-white transition duration-150 ease-in-out">
+          Return to Menu
+        </a>
+      </li>
+    </ul>
+  </div>
 </section>
 {% endblock %}
