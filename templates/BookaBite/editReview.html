@@ -5,11 +5,29 @@
 {% endblock %}
 
 {% block body_block %}
-  <h1>Edit Review</h1>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save Changes</button>
-  </form>
-  <a href="{% url 'BookABite:manageReview' %}">Cancel</a>
+<section class="container mx-auto px-4 py-10">
+  <h1 class="text-3xl font-bold text-center mb-6">Edit Review</h1>
+  <p class="text-gray-700 text-center mb-8">Update your review below.</p>
+
+  <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-3xl mx-auto">
+    <form method="post">
+      {% csrf_token %}
+      <div class="space-y-4">
+        {{ form.as_p }}
+      </div>
+      
+      <div class="flex justify-between mt-6">
+        <button type="submit" 
+          class="inline-block px-6 py-2 border-2 border-blue-500 text-blue-500 font-semibold text-sm leading-tight uppercase rounded hover:bg-blue-500 hover:text-white transition duration-150 ease-in-out">
+          Save Changes
+        </button>
+        
+        <a href="{% url 'BookABite:manageReview' %}" 
+          class="inline-block px-6 py-2 border-2 border-blue-500 text-blue-500 font-semibold text-sm leading-tight uppercase rounded hover:bg-blue-500 hover:text-white transition duration-150 ease-in-out">
+          Cancel
+        </a>
+      </div>
+    </form>
+  </div>
+</section>
 {% endblock %}
