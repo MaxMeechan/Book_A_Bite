@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 from datetime import datetime
 from BookaBite.forms import UserForm,UserProfileForm,ReviewsForm,BookingsForm,MenuForm,ItemForm
 from django.urls import reverse
@@ -203,6 +204,7 @@ def showMenu(request, menu):
         
     return render(request, 'BookaBite/showMenu.html', context=context_dict)
 
+@staff_member_required
 def addMenu(request):
     if request.method == 'POST':
         form = MenuForm(request.POST)
@@ -214,10 +216,9 @@ def addMenu(request):
 
     return render(request, 'BookaBite/addMenu.html', {'form': form})
 
-
+@staff_member_required
 def addItem(request):
-    print("🚀 addItem view was called!")
-
+    
     if request.method == 'POST':
         form = ItemForm(request.POST)
         if form.is_valid():
