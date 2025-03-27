@@ -8,19 +8,25 @@ Add Menu
 {% block body_block %}
 <section class="container mx-auto px-4 py-6">
     <h1 class="text-3xl font-bold text-center mb-6">Add Menu</h1>
-
-    <div>
-        <form method="post">
+    <p class = "text-gray-700 text-center mb-6">Create a new menu for your restaurant</p>
+    <div class = "bg-white shadow-lg rounded-lg p-8 w-full max-w-md mx-auto">
+        <form method="post" class="space-y-4">
             {% csrf_token %}
             {% for hidden in form.hidden_fields %}
                 {{ hidden }}
             {% endfor %}
             {% for field in form.visible_fields %}
-                {{ field.errors }}
-                {{ field.help_text }}
-                {{ field }}
+            <div>
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field.errors }}
+            {{ field.help_text }}
+            <input type="{{ field.field.widget.input_type }}"name="{{ field.name }}" id="{{ field.id_for_label }}" class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter {{ field.label|lower }}" {% if field.value %}value="{{ field.value }}"{% endif %}/>
+            </div>
             {% endfor %}
-            <input type="submit" name="submit" value="Create Menu" />
+
+            <div class ="text-center">
+            <input type="submit" name="submit" value="Create Menu" class="w-full inline-block px-6 py-2 border-2 border-blue-500 text-blue-500 font-semibold text-sm leading-tight uppercase rounded hover:bg-blue-500 hover:text-white transition duration-150 ease-in-out"/>
+            </div>
         </form>  
     </div>
 

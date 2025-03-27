@@ -13,7 +13,7 @@
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
     {% for menu in menus %}
       <a href="{% url 'BookABite:showMenu' menu.MenuName %}">
-        <div class="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-lg transition duration-300 border border-gray-200">
+        <div class="bg-white rounded-xl shadow-md p-6 text-center hover:text-green-500 transition duration-300 border border-gray-200">
           <h2 class="text-xl font-semibold">{{ menu.MenuName }}</h2>
         </div>
       </a>
