@@ -31,6 +31,11 @@ class ReviewsForm(forms.ModelForm):
 class BookingsForm(forms.ModelForm):
     bookingDate = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     bookingTime = forms.TimeField(widget=forms.TimeInput(attrs={'type': 'time'}))
+    partyMembers =  forms.IntegerField(
+        min_value=1, 
+        max_value=5,
+        widget=forms.Select(choices=[(i, str(i)) for i in range(1, 11)])
+    )
     
     class Meta:
         model = Bookings
