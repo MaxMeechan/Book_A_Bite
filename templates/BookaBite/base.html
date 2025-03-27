@@ -21,14 +21,15 @@
                 <ul class="flex space-x-4">
                     <li><a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:home' %}">Home</a></li>
                     <li><a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:about' %}">About</a></li>
-                    <li><a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:login' %}">Login</a></li>
-                    <li><a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:signup' %}">Sign-Up</a>
-                    </li>
                     <li><a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:menu' %}">Menu</a></li>
-                    <li><a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:bookings' %}">My
-                            Bookings</a></li>
-                    <li><a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:review' %}">Reviews</a>
-                    </li>
+                    <li><a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:bookings' %}">MyBookings</a></li>
+                    <li><a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:review' %}">Reviews</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:logout' %}">Logout</a></li>
+                    {% else %}
+                    <li><a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:login' %}">Login</a></li>
+                    <li><a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:signup' %}">Sign-Up</a></li>
+                    {% endif %}
                 </ul>
             </nav>
         </div>

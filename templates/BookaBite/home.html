@@ -14,11 +14,6 @@
     </div>
     <div>
       <img class="w-[200px] rounded shadow" src="/media/HomePage2.png" alt="Home Page Image">
-      <ul>
-        {% if user.is_authenticated %}
-        <li><a href="{% url 'BookABite:logout' %}">Logout</a></li>
-        {% endif%}
-      </ul>
     </div>
   </div>
 </section>
