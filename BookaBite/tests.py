@@ -62,15 +62,15 @@ class FormTests(BaseTestCase):
 class ViewTests(BaseTestCase):
 
     def test_home_view_status(self):
-        response = self.client.get(reverse('home'))
+        response = self.client.get(reverse('BookABite:home'))
         self.assertEqual(response.status_code, 200)
 
     def test_menu_view_status(self):
-        response = self.client.get(reverse('BookaBite:menu'))
+        response = self.client.get(reverse('BookABite:menu'))
         self.assertEqual(response.status_code, 200)
 
     def test_login_view_status(self):
-        response = self.client.get(reverse('login'))
+        response = self.client.get(reverse('BookABite:login'))
         self.assertEqual(response.status_code, 200)
 
 #URLs
@@ -81,9 +81,9 @@ class URLTests(BaseTestCase):
         self.assertEqual(resolver.func, views.home)
 
     def test_menu_url_resolves(self):
-        resolver = resolve('/BookaBite/menu/')
+        resolver = resolve('/BookABite/menu/')
         self.assertEqual(resolver.func, views.menu)
 
     def test_login_url_resolves(self):
-        resolver = resolve('/login/')
+        resolver = resolve('/BookABite/login/')
         self.assertEqual(resolver.func, views.user_login)
