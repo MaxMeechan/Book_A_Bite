@@ -33,14 +33,14 @@
   <br>
 
   <ul class="flex flex-col items-center space-y-4">
+    {% if request.user.is_superuser %}
     <li>
       <a href="{% url 'BookABite:addItem' %}"
         class="inline-block px-6 py-2 border-2 border-blue-500 text-blue-500 font-semibold text-sm leading-tight uppercase rounded hover:bg-blue-500 hover:text-white transition duration-150 ease-in-out">
         Add Item
       </a>
-
-
     </li>
+    {% endif %}
     <li>
       <a href="{% url 'BookABite:chooseMenu' %}" class="inline-block px-6 py-2 border-2 border-green-500 text-green-500 font-semibold text-sm leading-tight uppercase rounded hover:bg-green-500 hover:text-white transition duration-150 ease-in-out">
         Return to Menus
