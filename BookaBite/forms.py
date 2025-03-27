@@ -27,3 +27,11 @@ class ReviewsForm(forms.ModelForm):
     class Meta:
         model = Reviews  
         fields = ['Title', 'RatingNum', 'ReviewText'] 
+
+class BookingsForm(forms.ModelForm):
+    bookingDate = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    bookingTime = forms.TimeField(widget=forms.TimeInput(attrs={'type': 'time'}))
+    
+    class Meta:
+        model = Bookings
+        fields = ['bookingDate', 'bookingTime', 'partyMembers', 'surname']

@@ -3,12 +3,13 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
-from BookaBite.forms import UserForm,UserProfileForm,ReviewsForm
+from BookaBite.forms import UserForm,UserProfileForm,ReviewsForm,BookingsForm
 from django.urls import reverse
 from django.shortcuts import redirect
 from BookaBite.models import Reviews, Bookings, UserProfile, Menu, Item
 from django.shortcuts import get_object_or_404
-
+from django.utils.timezone import now
+from datetime import date
 
 # Create your views here.
 def home(request):
@@ -73,15 +74,108 @@ def signup(request):
     
     
     return render(request, 'BookaBite/signup.html',context={'user_form': user_form, 'profile_form': profile_form, 'registered' :registered})
-
+@login_required
 def bookings(request):
-    return render(request, 'BookaBite/bookings.html')
+    user = request.user
+    user_profile, created = UserProfile.objects.get_or_create(
+            user=user,
+            defaults={
+                'Username': user.username, 
+                'firstName': user.first_name, 
+                'surname': user.last_name, 
+                'email': user.email
+                }
+            )
+        
+    user_bookings = Bookings.objects.filter(
+        email=user_profile,  
+        bookingDate__gte=now().date()
+    ).order_by('bookingDate', 'bookingTime')  
+    
+    return render(request, 'BookaBite/bookings.html',{'user_Bookings': user_bookings})
 
+@login_required
 def manageBooking(request):
-    return render(request, 'BookaBite/manageBookings.html')
+    user = request.user
+    
+    user_profile, created = UserProfile.objects.get_or_create(
+            user=user,
+            defaults={
+                'Username': user.username, 
+                'firstName': user.first_name, 
+                'surname': user.last_name, 
+                'email': user.email
+                }
+            )
+    user_bookings = Bookings.objects.filter(email=user_profile)
+    user_bookings = user_bookings.filter(bookingDate__gte=date.today())
+    
+    
+    return render(request, 'BookaBite/manageBookings.html',{'user_bookings': user_bookings})
 
+@login_required
 def addBooking(request):
-    return render(request, 'BookaBite/addBookings.html')
+    user = request.user
+    
+    form = BookingsForm(request.POST)
+    user_profile, created = UserProfile.objects.get_or_create(
+        user=user,
+        defaults={
+            'Username': user.username,
+            'firstName': user.first_name,
+            'surname': user.last_name,
+            'email': user.email
+        }
+    )
+    if request.method == "POST":
+        form = BookingsForm(request.POST)
+        if form.is_valid():
+            booking = form.save(commit=False)
+            booking.email = user_profile  
+            booking.save()
+            return redirect('BookABite:bookings')  
+    else:
+        form = BookingsForm()
+        
+    
+    return render(request, 'BookaBite/addBookings.html',{'form': form})
+
+@login_required
+def editBooking(request, booking_id):
+    booking = get_object_or_404(Bookings, bookingId=booking_id)
+    
+    if request.user.userprofile.email != booking.email.email:
+        return redirect('BookABite:bookings')
+    
+    
+    if request.method == "POST":
+        form = BookingsForm(request.POST, instance=booking)
+        if form.is_valid():
+            form.save()
+            return redirect('BookABite:bookings')  
+    else:
+        form = BookingsForm(instance=booking)
+    return render(request, 'BookaBite/editBooking.html', {'form': form, 'booking': booking})
+
+
+@login_required
+def deleteBooking(request, booking_id):
+    
+    booking = get_object_or_404(Bookings, bookingId=booking_id)
+    
+    if booking.email.user != request.user:
+        return redirect('BookABite:manageBooking')
+    
+    if request.method == "POST":
+        booking.delete()  
+        return redirect('BookABite:manageBooking')
+    
+    return render(request, 'BookaBite/deleteBooking.html', {'booking': booking})
+    
+    
+        
+    
+    
 
 def menu(request):
     return render(request, 'BookaBite/menu.html')
@@ -121,6 +215,7 @@ def review(request):
     context_dict['review_list']= Review_list
     
     return render(request, 'BookaBite/review.html',context_dict)
+
 @login_required
 def addReview(request):
     if request.method == "POST":
@@ -144,6 +239,7 @@ def addReview(request):
     else:
         form = ReviewsForm()
     return render(request, 'BookaBite/addReview.html', {'form': form})
+
 @login_required
 def manageReview(request):
     user = request.user
@@ -169,6 +265,7 @@ def deleteReview(request,review_id):
         review.delete()
         return redirect('BookABite:manageReview')
     return render(request, 'BookaBite/deleteReview.html', {'review': review})
+
 @login_required
 def editReview(request, review_id):
     review = get_object_or_404(Reviews, ReviewID=review_id, Username=request.user.userprofile)

@@ -23,4 +23,6 @@ urlpatterns = [
     path('logout/', views.user_logout, name='logout'),
     path('deletereview/<int:review_id>/', views.deleteReview, name='deleteReview'),
     path('editreview/<int:review_id>/', views.editReview, name='editReview'),
+    path('deletebooking/<int:booking_id>/', views.deleteBooking, name='deleteBooking'),
+    path('editbooking/<int:booking_id>/', views.editBooking, name='editBooking'),
 ]

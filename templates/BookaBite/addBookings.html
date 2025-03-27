@@ -12,6 +12,11 @@
 
   <div class="flex justify-center mb-8">
     <img class="w-52 rounded shadow" src="/media/HomePage2.png" alt="Booking Image">
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}  
+      <button type="submit">Confirm Booking</button>
+  </form>
   </div>
 
   <div class="text-center">
