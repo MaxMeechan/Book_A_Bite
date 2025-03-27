@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
-from BookaBite.forms import UserForm,UserProfileForm,ReviewsForm,BookingsForm
+from BookaBite.forms import UserForm,UserProfileForm,ReviewsForm,BookingsForm,MenuForm,ItemForm
 from django.urls import reverse
 from django.shortcuts import redirect
 from BookaBite.models import Reviews, Bookings, UserProfile, Menu, Item
@@ -181,7 +181,8 @@ def menu(request):
     return render(request, 'BookaBite/menu.html')
 
 def chooseMenu(request):
-    return render(request, 'BookaBite/chooseMenu.html')
+    menus = Menu.objects.all()
+    return render(request, 'BookaBite/chooseMenu.html', {'menus': menus})
 
 def showMenu(request, menu):
     
@@ -203,10 +204,30 @@ def showMenu(request, menu):
     return render(request, 'BookaBite/showMenu.html', context=context_dict)
 
 def addMenu(request):
-    return render(request, 'BookaBite/addMenu.html')
+    if request.method == 'POST':
+        form = MenuForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('BookABite:chooseMenu')
+    else:
+        form = MenuForm()
+
+    return render(request, 'BookaBite/addMenu.html', {'form': form})
+
 
 def addItem(request):
-    return render(request, 'BookaBite/addItem.html')
+    print("🚀 addItem view was called!")
+
+    if request.method == 'POST':
+        form = ItemForm(request.POST)
+        if form.is_valid():
+            item = form.save()
+            return redirect('BookABite:showMenu', item.MenuName.MenuName)
+    else:
+        form = ItemForm()
+
+    return render(request, 'BookaBite/addItem.html', {'form': form})
+
 
 def review(request):
     

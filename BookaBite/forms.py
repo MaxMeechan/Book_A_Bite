@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from BookaBite.models import UserProfile, Reviews, Bookings
+from BookaBite.models import UserProfile, Reviews, Bookings, Menu, Item
 from django import forms
 
 class UserForm(forms.ModelForm):
@@ -35,3 +35,37 @@ class BookingsForm(forms.ModelForm):
     class Meta:
         model = Bookings
         fields = ['bookingDate', 'bookingTime', 'partyMembers', 'surname']
+
+class MenuForm(forms.ModelForm):
+    MenuName = forms.CharField(max_length=30)
+
+    class Meta:
+        model = Menu
+        fields = ('MenuName', )
+        labels = {
+            'MenuName': 'Menu Name',
+        }
+
+        
+class ItemForm(forms.ModelForm):
+    ItemDesc = forms.CharField(
+        max_length=100,
+        widget=forms.Textarea(attrs={'rows': 3}),
+        label="Description"
+    )
+    SpiceLevel = forms.IntegerField(min_value=0, max_value=5)
+
+    class Meta:
+        model = Item
+        fields = ['MenuName', 'ItemName', 'ItemPrice', 'ItemDesc', 'SpiceLevel']
+        labels = {
+            'MenuName': 'Select Menu',
+            'ItemName': 'Item Name',
+            'ItemPrice': 'Price (£)',
+            'ItemDesc': 'Description',
+            'SpiceLevel': 'Spice Level (0-5)',
+        }
+
+
+
+    
