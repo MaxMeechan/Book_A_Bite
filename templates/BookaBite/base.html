@@ -4,6 +4,7 @@
 
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book A Bite</title>
     {% load static %}
 
@@ -14,12 +15,12 @@
 <body class="bg-gray-50">
 
     <header class="bg-white shadow">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="container mx-auto px-4 py-4 flex flex-wrap justify-between items-center">
             <img src="{% static 'images/HomeImage.png' %}" alt="Home" class="nav-logo w-20 h-20">
             <div class="text-2xl font-bold text-gray-800">Book A Bite</div>
 
-            <nav>
-                <ul class="flex space-x-4">
+            <nav class = "w-full md:w-auto mt-4 md:mt-0">
+                <ul class="flex flex-wrap justify-center md:justify-end space-x-4">
                     <li><a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:home' %}">Home</a></li>
                     <li><a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:about' %}">About</a></li>
                     <li><a class="text-gray-600 hover:text-gray-900" href="{% url 'BookABite:menu' %}">Menu</a></li>
