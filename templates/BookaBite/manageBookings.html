@@ -9,6 +9,23 @@ Manage Booking
 <section class="container mx-auto px-4 py-6">
     <h1 class="text-3xl font-bold text-center mb-6">Manage Bookings</h1>
     <p class="text-gray-700 text-center mb-8">This is the Manage Bookings page.</p>
+    <div>
+        {% if user_bookings %}
+        <ul>
+            {% for booking in user_bookings %}
+            <li>
+                {{ booking.bookingDate }}
+                {{ booking.bookingTime }}
+                {{ booking.partyMembers }}
+                {{ booking.surname }}
+                <a href="{% url 'BookABite:editBooking' booking.bookingId %}">Edit</a>
+                <a href="{% url 'BookABite:deleteBooking' booking.bookingId %}">Delete</a>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+    </div>
 
     <div class="text-center">
         <a href="{% url 'BookABite:bookings' %}"

@@ -1,0 +1,16 @@
+{% extends 'BookaBite/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+  Edit Booking
+{% endblock %}
+
+{% block body_block %}
+  <h1>Edit Booking</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save Changes</button>
+  </form>
+  <a href="{% url 'BookABite:manageBooking' %}">Cancel</a>
+{% endblock %}
