@@ -14,6 +14,7 @@ urlpatterns = [
     path('menu/', views.menu, name='menu'),
     path('menu/chooseMenu', views.chooseMenu, name="chooseMenu"),
     path('menu/chooseMenu/showMenu', views.showMenu, name="showMenu"),
+    path('menu/chooseMenu/showMenu/<str:menu>/', views.showMenu, name="showMenu"),
     path('menu/chooseMenu/addMenu', views.addMenu, name="addMenu"),
     path('menu/chooseMenu/showMenu/addItem', views.addItem, name="addItem"),
     path('review/', views.review, name="review"),
