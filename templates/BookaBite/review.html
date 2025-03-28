@@ -2,39 +2,38 @@
 {% load staticfiles %}
 
 {% block title_block %}
-  Review
+  Reviews
 {% endblock %}
 
 {% block body_block %}
-<section class="container mx-auto px-4 py-6">
-  <h1 class="text-3xl font-bold text-center mb-6">Reviews</h1>
-  <p class="text-gray-700 text-center mb-8">This is the reviews page.</p>
-  <ul class="flex flex-col items-center space-y-4">
-    <div>
-      {% if review_list %}
-      <ul>
+<section class="container mx-auto px-4 py-8">
+  <h1 class="text-3xl font-bold text-center mb-4">Reviews</h1>
+  <p class="text-gray-600 text-center mb-6">Read what others have to say about Book A Bite!</p>
+
+  <div class="max-w-2xl mx-auto">
+    {% if review_list %}
+      <div class="space-y-6">
         {% for review in review_list %}
-        <li>
-          {{ review.Title }}
-          {{ review.RatingNum }}
-          {{ review.ReviewText }}
-          {{ review.Username }}
-        </li>
+        <div class="border border-gray-300 rounded-lg p-4 shadow-md bg-white">
+          <h2 class="text-xl font-semibold">{{ review.Title }}</h2>
+          <p class="text-gray-600"><strong>Rating:</strong> ⭐  {{ review.RatingNum }}/5</p>
+          <p class="mt-2 text-gray-800 italic">"{{ review.ReviewText }}"</p>
+          <p class="text-right text-gray-500 text-sm">- {{ review.Username }}</p>
+        </div>
         {% endfor %}
-      </ul>
-      {% endif %}
-    </div>
-    <li>
-      <a href="{% url 'BookABite:addReview' %}" class="inline-block px-6 py-2 border-2 border-blue-500 text-blue-500 font-semibold text-sm leading-tight uppercase rounded hover:bg-blue-500 hover:text-white transition duration-150 ease-in-out">
-        Add Review
-      </a>
-    </li>
-    <li>
-      <a href="{% url 'BookABite:manageReview' %}" class="inline-block px-6 py-2 border-2 border-blue-500 text-blue-500 font-semibold text-sm leading-tight uppercase rounded hover:bg-blue-500 hover:text-white transition duration-150 ease-in-out">
-        Manage Review
-      </a>
-    </li>
-  </ul>
+      </div>
+    {% else %}
+      <p class="text-center text-gray-500">No reviews available.</p>
+    {% endif %}
+  </div>
+
+  <div class="mt-8 flex justify-center space-x-4">
+    <a href="{% url 'BookABite:addReview' %}" class="px-6 py-2 border-2 border-blue-500 text-blue-500 font-semibold uppercase rounded hover:bg-blue-500 hover:text-white transition duration-150 ease-in-out">
+      Add Review
+    </a>
+    <a href="{% url 'BookABite:manageReview' %}" class="px-6 py-2 border-2 border-blue-500 text-blue-500 font-semibold uppercase rounded hover:bg-blue-500 hover:text-white transition duration-150 ease-in-out">
+      Manage Review
+    </a>
+  </div>
 </section>
 {% endblock %}
-
