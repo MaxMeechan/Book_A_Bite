@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 from BookaBite.models import UserProfile, Reviews, Bookings, Menu, Item
 from django import forms
 

@@ -50,10 +50,12 @@ def user_login(request):
 def signup(request):
     registered=False
     if request.method == 'POST':
+        print("hello world")
         user_form =UserForm(request.POST)
-        profile_form=UserProfileForm(request.POST)
+        profile_form=UserProfileForm(request.POST, request.FILES)
         
         if user_form.is_valid() and profile_form.is_valid():
+            print("hello from in here")
             
             user =user_form.save()
             user.set_password(user.password)
@@ -61,11 +63,15 @@ def signup(request):
             profile = profile_form.save(commit=False)
             profile.user = user
             
-            if 'picture' in request.FILES:
-                profile.picture =request.FILES['picture']
+            if 'profile_pic' in request.FILES:
+                profile.profilePicture =request.FILES['picture']
             
             profile.save()
             registered= True
+            
+            print("heloooooooooooo")
+            
+            return redirect('BookABite:login')
         else:
             print(user_form.errors,profile_form.errors)
     else:
@@ -75,6 +81,7 @@ def signup(request):
     
     
     return render(request, 'BookaBite/signup.html',context={'user_form': user_form, 'profile_form': profile_form, 'registered' :registered})
+
 @login_required
 def bookings(request):
     user = request.user
