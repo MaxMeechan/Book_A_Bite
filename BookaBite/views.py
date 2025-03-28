@@ -67,17 +67,13 @@ def signup(request):
             profile.email = email
             
             if 'profile_pic' in request.FILES:
-                profile.profilePicture =request.FILES['picture']
+                profile.profilePicture =request.FILES['profile_pic']
             
             profile.save()
             registered= True
             
             
        
-                
-            
-          
-            
             return redirect('BookABite:login')
         else:
             print(user_form.errors,profile_form.errors)
