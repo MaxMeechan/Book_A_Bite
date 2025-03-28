@@ -50,18 +50,21 @@ def user_login(request):
 def signup(request):
     registered=False
     if request.method == 'POST':
-        print("hello world")
+        
         user_form =UserForm(request.POST)
         profile_form=UserProfileForm(request.POST, request.FILES)
         
         if user_form.is_valid() and profile_form.is_valid():
-            print("hello from in here")
+            email = user_form.cleaned_data['email']
+            username = user_form.cleaned_data['username']
             
             user =user_form.save()
             user.set_password(user.password)
             user.save()
             profile = profile_form.save(commit=False)
             profile.user = user
+            profile.Username = username
+            profile.email = email
             
             if 'profile_pic' in request.FILES:
                 profile.profilePicture =request.FILES['picture']
@@ -69,7 +72,11 @@ def signup(request):
             profile.save()
             registered= True
             
-            print("heloooooooooooo")
+            
+       
+                
+            
+          
             
             return redirect('BookABite:login')
         else:
